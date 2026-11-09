@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Média</title>
+</head>
+    <style>
+        /* CSS */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center; /* Centraliza o conteúdo da página */  
+            background: linear-gradient(
+                135deg,
+                #2c3e50,
+                #134404
+            ); /* Define um gradiente de fundo para a página */
+            display: flex; /* Utiliza o modelo de layout flexível */
+            justify-content: center; /* Centraliza o conteúdo horizontalmente */
+            align-items: center; /* Centraliza o conteúdo verticalmente */
+            height: 100vh; /* Define a altura da página como 100% da altura da janela de visualização */
+            margin: 0; /* Remove a margem padrão do body */
+        }
+
+        #container {
+            background-color: #dfe6e9; /* Define a cor de fundo do container */
+            transition: 0.3s; /* Adiciona uma transição suave para o efeito de hover */
+            width: 450px; /* Define a largura do container */
+            padding: 30px; /* Adiciona espaçamento interno ao container */
+            border-radius: 10px; /* Adiciona cantos arredondados ao container */
+            border-top: 5px solid rgb(18, 231, 18); /* Adiciona uma borda superior verde ao container */
+            display: inline-block; /* Faz com que o container se ajuste ao conteúdo */
+            margin-top: 50px; /* Adiciona uma margem superior ao container */
+            margin-left: auto; /* Centraliza o container horizontalmente */
+            margin-right: auto; /* Centraliza o container horizontalmente */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra ao container */
+        }
+
+        #container:hover {
+            transform: scale(1.02); /* Aumenta ligeiramente o tamanho do container ao passar o mouse */
+            
+        }
+
+        button {
+            background-color: rgb(18, 231, 18);
+            color: white;
+            padding: 10px; /* Adiciona um pouco de espaçamento interno ao botão */
+            border: none; /* Remove a borda do botão */
+            border-radius: 10px;
+            cursor: pointer; /* Adiciona um cursor de ponteiro ao passar o mouse sobre o botão */
+            transition: 0.3s; /* Adiciona uma transição suave para o efeito de hover */
+        }
+
+        /* Adiciona um efeito de hover ao botão */
+        button:hover {
+            background-color: rgb(7, 32, 7);
+            transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão ao passar o mouse */
+            box-shadow: 0 4px 15px rgba(18,231, 18, 0.4); /* Adiciona uma sombra ao botão ao passar o mouse */;
+        }
+
+        input {
+            padding: 3px; /* Adiciona um pouco de espaçamento interno aos campos de entrada */
+            margin-bottom: 10px; /* Adiciona uma margem inferior aos campos de entrada */
+            width: 120px; /* Define a largura dos campos de entrada */
+            border: 1px solid #ccc; /* Adiciona uma borda cinza clara aos campos de entrada */
+            border-radius: 5px solid #ccc; /* Adiciona cantos arredondados aos campos de entrada */
+        }
+
+        input:focus
+    {
+                outline: none; /* Remove o contorno padrão ao focar no campo de entrada */
+                border-color: rgb(18, 231, 18); /* Altera a cor da borda ao focar no campo de entrada */
+                box-shadow: 0 0 5px rgb(18, 231, 18); /* Adiciona uma sombra ao redor do campo de entrada ao focar */
+            }       
+
+        h1 {
+            color: rgb(18, 231, 18);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra ao texto do título */
+        }
+
+        #resultado {
+            font-weight: bold; /* Deixa o texto do resultado em negrito */
+            margin-top: 10px; /* Adiciona uma margem superior ao resultado */
+            font-size: 18px; /* Define o tamanho da fonte do resultado */
+            padding: 12px; /* Adiciona um pouco de espaçamento interno ao resultado */
+            border-radius: 8px; /* Adiciona cantos arredondados ao resultado */
+
+            transition: 0.3s; /* Adiciona uma transição suave para o efeito de hover */
+        }
+    </style>
+    <script>
+        // JavaScript
+        function calcularMedia() {
+            var nota1 = parseFloat(document.getElementById("nota1").value);
+            var nota2 = parseFloat(document.getElementById("nota2").value);
+            var nota3 = parseFloat(document.getElementById("nota3").value);
+
+          
+
+            // Verifica se todas as notas foram inseridas
+            if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3)) {
+                alert("Por favor, insira todas as notas.");
+                return;
+            }
+
+              if (
+                nota1 < 0 || nota1 > 10 || /* Verifica se a nota 1 está fora do intervalo válido */
+                nota2 < 0 || nota2 > 10 || /* Verifica se a nota 2 está fora do intervalo válido */
+                nota3 < 0 || nota3 > 10
+            ) {
+                alert("Por favor, insira notas válidas entre 0 e 10.");
+                return;
+            }
+            
+            // Calcula a média das notas
+            var media = (nota1 + nota2 + nota3) / 3;
+
+            // Exibe a média final no campo de entrada
+            document.getElementById("avFinal").value = media.toFixed(2);
+            
+            // Verifica se a média é maior ou igual a 7 para determinar aprovação ou reprovação
+          var resultado = document.getElementById("resultado");
+
+          var mediaMinima = 7;
+            if (media >= mediaMinima) {
+                resultado.textContent = "Parabéns! Você foi aprovado."; /* Exibe a mensagem de aprovação */
+                resultado.style.color = "#0f5132"; /* Define a cor do texto como verde para aprovação */
+                resultado.style.backgroundColor = "#d1e7dd"; /* Define a cor de fundo como verde para aprovação */
+            } else {
+                resultado.textContent = "Infelizmente, você foi reprovado."; /* Exibe a mensagem de reprovação */
+                resultado.style.color = "#842029"; /* Define a cor do texto como vermelho para reprovação */
+                resultado.style.backgroundColor = "#f8d7da"; /* Define a cor de fundo como vermelho para reprovação */
+            }
+        }
+    </script>
+<body>
+
+    <div id="container">
+
+    <h1>📚 Calculadora de Média</h1>
+
+    <p>Digite as três notas para calcular a média:</p>
+
+    <label for="nota1">Nota 1:</label>
+    <input type="number" id="nota1" min="0" max="10" step="0.01"><br>
+
+    <label for="nota2">Nota 2:</label>
+    <input type="number" id="nota2" min="0" max="10" step="0.01"><br>
+
+    <label for="nota3">Nota 3:</label>
+    <input type="number" id="nota3" min="0" max="10" step="0.01"><br><br>
+
+    <label for="avFinal">Média Final:</label>
+    <input type="number" id="avFinal" min="0" max="10" step="0.01" readonly><br><br>
+
+    <button type="button" onclick="calcularMedia()">Calcular Média</button>
+
+    <p id="resultado"></p>
+
+    </div>
+
+</body>
+</html>
